@@ -15,3 +15,7 @@ jobs:
     # Use the output from the `hello` step
     - name: Get the output time
       run: echo "The time was ${{ steps.hello.outputs.time }}"
+    # add github action
+    - name: add_a_docker
+      uses: action/setup-node@v1.0
+      run: which python
