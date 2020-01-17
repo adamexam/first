@@ -18,4 +18,5 @@ jobs:
     # add github action
     - name: add_a_docker
       uses: action/setup-node@v1.0
+    - name: check_python
       run: which python
