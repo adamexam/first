@@ -1,0 +1,26 @@
+name: main
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+#     - uses: actions/checkout@v1
+#     - name: Run a one-line script
+#       run: echo Hello, world!
+#     - name: Run a multi-line script
+#       run: |
+#         echo Add other actions to build,
+#         echo test, and deploy your project.
+    - uses: azure/docker-login@v1
+      with:
+        login-server: adam5283.azurecr.io
+        username: ${{ secrets.azure_github_cr_user }}
+        password: ${{ secrets.azure_github_cr_pass }}
+
+    - run: |
+        docker build . -t adam5283.azurecr.io/helloworld:${{ github.sha }}
+        docker push adam5283.azurecr.io/helloworld:${{ github.sha }}
