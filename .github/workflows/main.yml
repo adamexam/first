@@ -18,7 +18,7 @@ jobs:
         username: ${{ secrets.azure_github_cr_user }}
         password: ${{ secrets.azure_github_cr_pass }}
 
-    - run:
+    - run: |
         using: 'docker'
         image:  'Dockerfile'
         ls -al
