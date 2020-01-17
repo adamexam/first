@@ -19,5 +19,6 @@ jobs:
         password: ${{ secrets.azure_github_cr_pass }}
 
     - run: |
+        ls -al
         docker build . -t ${{env.azure_CR}}/helloworld:latest
         docker push ${{env.azure_CR}}/helloworld:latest
