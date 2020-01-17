@@ -2,25 +2,16 @@ name: main
 
 on: [push]
 
-env:
-  azure_CR: adam5283.azurecr.io
-  azure_RG: github
-
 jobs:
-  build-and-deploy-to-CR:
-
+  hello_world_job:
     runs-on: ubuntu-latest
-
+    name: A job to say hello
     steps:
-    - uses: azure/docker-login@v1
+    - name: Hello world action step
+      id: hello
+      uses: actions/hello-world-docker-action@v1
       with:
-        login-server: adam5283.azurecr.io
-        username: ${{ secrets.azure_github_cr_user }}
-        password: ${{ secrets.azure_github_cr_pass }}
-
-    - run: |
-        using: 'docker'
-        image:  'Dockerfile'
-        ls -al
-        docker build . -t ${{env.azure_CR}}/helloworld:latest
-        docker push ${{env.azure_CR}}/helloworld:latest
+        who-to-greet: 'Mona the Octocat'
+    # Use the output from the `hello` step
+    - name: Get the output time
+      run: echo "The time was ${{ steps.hello.outputs.time }}"
