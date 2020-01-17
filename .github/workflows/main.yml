@@ -2,19 +2,16 @@ name: main
 
 on: [push]
 
+env:
+  azure_CR: adam5283.azurecr.io
+  azure_RG: github
+
 jobs:
-  build:
+  build-and-deploy-to-CR:
 
     runs-on: ubuntu-latest
 
     steps:
-#     - uses: actions/checkout@v1
-#     - name: Run a one-line script
-#       run: echo Hello, world!
-#     - name: Run a multi-line script
-#       run: |
-#         echo Add other actions to build,
-#         echo test, and deploy your project.
     - uses: azure/docker-login@v1
       with:
         login-server: adam5283.azurecr.io
@@ -22,5 +19,5 @@ jobs:
         password: ${{ secrets.azure_github_cr_pass }}
 
     - run: |
-        docker build . -t adam5283.azurecr.io/helloworld:${{ github.sha }}
-        docker push adam5283.azurecr.io/helloworld:${{ github.sha }}
+        docker build . -t ${{env.azure_CR}}/helloworld:latest
+        docker push ${{env.azure_CR}}/helloworld:latest
