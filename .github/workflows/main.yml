@@ -7,17 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
-    - name: Hello world action step
-      id: hello
-      uses: actions/hello-world-docker-action@v1
-      with:
-        who-to-greet: 'Adam'
-    # Use the output from the `hello` step
-    - name: Get the output time
-      run: echo "The time was ${{ steps.hello.outputs.time }}"
-    # add github action
-    # - name: add_a_docker
-    #   uses: action/setup-node@v1.0
+    # - name: Hello world action step
+    #   id: hello
+    #   uses: actions/hello-world-docker-action@v1
+    #   with:
+    #     who-to-greet: 'Adam'
+    # - name: Get the output time
+    #   run: echo "The time was ${{ steps.hello.outputs.time }}"
     - name: login_azure_cr
       uses: azure/docker-login@v1
       with:
@@ -25,5 +21,6 @@ jobs:
         username: ${{ secrets.azure_github_cr_user }}
         password: ${{ secrets.azure_github_cr_pass }}
     - run: |
-        docker images
+        # docker images
         # docker pull adam5283.azurecr.io/slim-python
+        echo $DOCKER_CONFIG
