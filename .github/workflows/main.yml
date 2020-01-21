@@ -25,4 +25,5 @@ jobs:
         username: ${{ secrets.azure_github_cr_user }}
         password: ${{ secrets.azure_github_cr_pass }}
     - run: |
-        echo ${{ github.sha }}
+        docker images
+        docker pull adam5283.azurecr.io/slim-python
