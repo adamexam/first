@@ -18,5 +18,11 @@ jobs:
     # add github action
     # - name: add_a_docker
     #   uses: action/setup-node@v1.0
-    - name: check_python
-      run: which python
+    - name: login_azure_cr
+      uses: azure/docker-login@v1
+      with:
+        login-server: adam5283.azurecr.io
+        username: ${{ secrets.azure_github_cr_user }}
+        password: ${{ secrtes.azure_github_cr_pass }}
+    - run: |
+        echo ${{ github.sha }}
