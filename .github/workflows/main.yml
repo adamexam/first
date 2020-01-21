@@ -26,4 +26,4 @@ jobs:
         password: ${{ secrets.azure_github_cr_pass }}
     - run: |
         docker images
-        docker pull adam5283.azurecr.io/slim-python
+        # docker pull adam5283.azurecr.io/slim-python
