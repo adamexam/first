@@ -23,6 +23,6 @@ jobs:
       with:
         login-server: adam5283.azurecr.io
         username: ${{ secrets.azure_github_cr_user }}
-        password: ${{ secrtes.azure_github_cr_pass }}
+        password: ${{ secrets.azure_github_cr_pass }}
     - run: |
         echo ${{ github.sha }}
